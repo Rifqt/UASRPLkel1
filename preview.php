@@ -58,7 +58,7 @@ $result = mysqli_query($conn, $query);
             </div>
             <div class="col-4">
               <div class="d-flex justify-content-end">
-                <a href="dashboard.php" class="btn btn-outline-primary">Kembali</a>
+                <a href="generate.php" class="btn btn-outline-primary">Kembali</a>
               </div>
             </div>
           </div>

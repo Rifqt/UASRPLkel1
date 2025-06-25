@@ -6,7 +6,7 @@ require '../../public/app.php';
 
 require '../layouts/header.php';
 
-require '../layouts/navPetugas.php';
+require '../layouts/navUser.php';
 
 
 // logic backend

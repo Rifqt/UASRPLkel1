@@ -2,25 +2,28 @@
 
 $title = 'Dashboard';
 
+
 require '../layouts/header.php';
 
-require '../layouts/navPetugas.php';
+require '../layouts/navUser.php';
 
 ?>
 
 
-<div class="d-flex justify-content-center text-center py-5" data-aos="zoom-in">
-  <div class="content col-8">
-    <i class="fas fa-atlas fa-5x mb-2"></i>
-    <h1 class="mb-3">Welcome back to the <span class="text-primary">Pengaduan</span> web <br>
-      <span class="text-primary">happy work </span>and activities.
-    </h1>
-    <a href="laporan.php" class="btn btn-primary btn-icon-split">
-      <span class="icon text-white-50">
-        <i class="fas fa-book-open"></i>
-      </span>
-      <span class="text">Lihat Laporan</span>
-    </a>
+<div class="row py-5">
+  <div class="col-6 py-5 mt-3">
+    <div class="desc ml-5">
+      <h2 class="text-gray-800" data-aos="fade-down">Selamat datang di website pengaduan masyarakat Pemalang</h2>
+      <p data-aos="fade-down">Website ini dibuat untuk melihat laporan atau keluh kesah masyarakat Pemasalang dan menjawab
+        nya dengan satu platform.</p>
+      <a href="buatLaporan.php" class="btn btn-primary shadow" data-aos="fade-up">Buat Laporan</a>
+      <a href="lihatLaporan.php" class="btn btn-outline-primary ml-2" data-aos="fade-up" data-aos-duration="500">Lihat Laporan</a>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="image" data-aos="fade-left">
+      <img src="../../assets/img/img-dashboard-user.svg" width="450" alt="">
+    </div>
   </div>
 </div>
 
