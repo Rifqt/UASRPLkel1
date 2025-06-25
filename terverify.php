@@ -6,7 +6,7 @@ require '../../public/app.php';
 
 require '../layouts/header.php';
 
-require '../layouts/navAdmin.php';
+require '../layouts/navPetugas.php';
 
 
 
@@ -42,21 +42,18 @@ $result = mysqli_query($conn, "SELECT * FROM pengaduan WHERE status = 'selesai' 
       <th scope="col">Isi Laporan</th>
       <th scope="col">Foto</th>
       <th scope="col">action</th>
-      
     </tr>
   </thead>
   <tbody>
-    <?php $i = 1; ?>
     <?php while ($row = mysqli_fetch_assoc($result)) : ?>
       <tr>
-        <th scope="row"><?= $i; ?>.</th>
+        <th scope="row">1.</th>
         <td><?= $row["tgl_pengaduan"]; ?></td>
         <td><?= $row["nik"]; ?></td>
         <td><?= $row["isi_laporan"]; ?></td>
         <td><img src="../../assets/img/<?= $row["foto"]; ?>" width="50"></td>
         <td><a href="tanggapi.php?id_pengaduan=<?= $row["id_pengaduan"]; ?>" class="btn btn-outline-success">Tanggapi</a></td>
       </tr>
-      <?php $i++; ?>
     <?php endwhile; ?>
   </tbody>
 </table>

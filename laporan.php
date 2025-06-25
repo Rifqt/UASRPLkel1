@@ -3,14 +3,10 @@
 $title = 'Laporan Masyarakat';
 
 require '../../public/app.php';
-
 require '../layouts/header.php';
+require '../layouts/navPetugas.php';
 
-require '../layouts/navAdmin.php';
-
-
-// logic backend
-
+// Ambil semua laporan yang berstatus "proses"
 $result = mysqli_query($conn, "SELECT * FROM pengaduan WHERE status = 'proses' ORDER BY id_pengaduan DESC");
 
 ?>
@@ -31,7 +27,6 @@ $result = mysqli_query($conn, "SELECT * FROM pengaduan WHERE status = 'proses' O
 
 <hr>
 
-
 <table class="table table-bordered shadow-sm text-center" data-aos="fade-up" data-aos-duration="700">
   <thead>
     <tr>
@@ -40,28 +35,40 @@ $result = mysqli_query($conn, "SELECT * FROM pengaduan WHERE status = 'proses' O
       <th scope="col">NIK</th>
       <th scope="col">Isi Laporan</th>
       <th scope="col">Foto</th>
-      <th scope="col">action</th>
+      <th scope="col">Aksi</th>
     </tr>
   </thead>
   <tbody>
-    <?php $i = 1; ?>
-    <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+    <?php
+    $no = 1;
+    if (mysqli_num_rows($result) > 0) :
+      while ($row = mysqli_fetch_assoc($result)) :
+    ?>
+        <tr>
+          <th scope="row"><?= $no++; ?>.</th>
+          <td><?= $row["tgl_pengaduan"]; ?></td>
+          <td><?= $row["nik"]; ?></td>
+          <td><?= $row["isi_laporan"]; ?></td>
+          <td>
+            <?php if (!empty($row["foto"])) : ?>
+              <img src="../../assets/img/<?= $row["foto"]; ?>" width="50">
+            <?php else : ?>
+              <span class="text-muted">Tidak ada foto</span>
+            <?php endif; ?>
+          </td>
+          <td>
+            <a href="verify.php?id_pengaduan=<?= $row["id_pengaduan"]; ?>" class="btn btn-success">Verifikasi</a>
+          </td>
+        </tr>
+    <?php
+      endwhile;
+    else :
+    ?>
       <tr>
-        <th scope="row"><?= $i; ?>.</th>
-        <td><?= $row["tgl_pengaduan"]; ?></td>
-        <td><?= $row["nik"]; ?></td>
-        <td><?= $row["isi_laporan"]; ?></td>
-        <td><img src="../../assets/img/<?= $row["foto"]; ?>" width="50"></td>
-        <td>
-          <a href="verify.php?id_pengaduan=<?= $row["id_pengaduan"]; ?>" class="btn btn-success">Verify</a>
-        </td>
+        <td colspan="6" class="text-center text-muted">Tidak ada laporan dengan status <strong>proses</strong>.</td>
       </tr>
-      <?php $i++; ?>
-    <?php endwhile; ?>
+    <?php endif; ?>
   </tbody>
 </table>
-
-
-
 
 <?php require '../layouts/footer.php'; ?>
